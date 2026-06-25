@@ -1,0 +1,1089 @@
+html
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Conexão Clinic — Studio de Pilates</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;0,900;1,400;1,600&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        :root {
+            --marrom: #7B5241;
+            --marrom-escuro: #3D2B1F;
+            --marrom-claro: #A07860;
+            --bege: #F5EDE3;
+            --bege-claro: #FBF7F3;
+            --branco: #FFFFFF;
+            --verde-wa: #4CAF7D;
+            --verde-wa-escuro: #3d9268;
+            --texto: #3D2B1F;
+            --texto-medio: #7A5C4E;
+        }
+        html { scroll-behavior: smooth; }
+        body { font-family: 'Plus Jakarta Sans', sans-serif; background: var(--bege-claro); color: var(--texto); }
+
+        /* NAV */
+        nav {
+            position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+            background: rgba(251,247,243,0.97);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(107,76,59,0.1);
+            padding: 0 5%;
+            display: flex; align-items: center; justify-content: space-between;
+            height: 72px;
+        }
+        .nav-logo img { height: 52px; object-fit: contain; }
+        .nav-links { display: flex; gap: 2rem; list-style: none; }
+        .nav-links a {
+            text-decoration: none; color: var(--texto-medio);
+            font-size: 0.82rem; font-weight: 700;
+            transition: color 0.3s; letter-spacing: 1.5px;
+            text-transform: uppercase;
+        }
+        .nav-links a:hover { color: var(--marrom); }
+        .nav-cta {
+            background: var(--verde-wa); color: #fff;
+            padding: 10px 22px; border-radius: 50px;
+            text-decoration: none; font-size: 0.85rem; font-weight: 700;
+            display: flex; align-items: center; gap: 8px;
+            transition: background 0.3s;
+        }
+        .nav-cta:hover { background: var(--verde-wa-escuro); }
+        .hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; }
+        .hamburger span { width: 24px; height: 2px; background: var(--marrom); border-radius: 2px; }
+        .mobile-menu {
+            display: none; position: fixed; top: 72px; left: 0; right: 0;
+            background: var(--bege-claro); z-index: 999;
+            padding: 2rem; flex-direction: column; gap: 1.5rem;
+            border-bottom: 1px solid rgba(107,76,59,0.1);
+        }
+        .mobile-menu.open { display: flex; }
+        .mobile-menu a { text-decoration: none; color: var(--texto); font-size: 1rem; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; }
+
+        /* HERO */
+        .hero {
+            min-height: 100vh;
+            background:
+                radial-gradient(ellipse at 20% 50%, rgba(160,120,96,0.18) 0%, transparent 60%),
+                radial-gradient(ellipse at 80% 20%, rgba(107,76,59,0.12) 0%, transparent 55%),
+                radial-gradient(ellipse at 60% 80%, rgba(245,237,227,0.8) 0%, transparent 50%),
+                linear-gradient(135deg, #FBF7F3 0%, #F5EDE3 40%, #EDE0D4 100%);
+            display: flex; flex-direction: column;
+            align-items: center; justify-content: center;
+            text-align: center;
+            padding: 120px 5% 80px;
+            position: relative; overflow: hidden;
+        }
+        .hero::before {
+            content: '';
+            position: absolute; inset: 0;
+            background-image:
+                repeating-linear-gradient(
+                    45deg,
+                    transparent,
+                    transparent 40px,
+                    rgba(107,76,59,0.025) 40px,
+                    rgba(107,76,59,0.025) 41px
+                );
+            pointer-events: none;
+        }
+        .hero::after {
+            content: '';
+            position: absolute;
+            top: 50%; left: 50%; transform: translate(-50%, -50%);
+            width: 700px; height: 700px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(245,237,227,0.6) 0%, transparent 70%);
+            pointer-events: none;
+        }
+        .hero-content { position: relative; z-index: 1; }
+        .hero-tag {
+            display: inline-block;
+            background: rgba(107,76,59,0.09);
+            color: var(--marrom); padding: 7px 18px;
+            border-radius: 50px; font-size: 0.75rem;
+            font-weight: 700; margin-bottom: 1.8rem;
+            letter-spacing: 1.5px; text-transform: uppercase;
+            border: 1px solid rgba(107,76,59,0.15);
+        }
+        .hero h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(2.2rem, 5vw, 3.8rem);
+            font-weight: 700; line-height: 1.15;
+            color: var(--marrom-escuro);
+            margin-bottom: 0.5rem;
+            max-width: 780px;
+        }
+        .hero h1 .destaque {
+            color: var(--marrom);
+            font-style: italic;
+        }
+        .hero-sub-cta {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(1rem, 2.2vw, 1.35rem);
+            font-weight: 600;
+            color: #fff;
+            background: var(--verde-wa);
+            border-radius: 50px;
+            padding: 16px 36px;
+            margin: 2rem auto 0;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            text-decoration: none;
+            letter-spacing: 0.3px;
+            transition: background 0.3s, transform 0.3s;
+            box-shadow: 0 6px 24px rgba(76,175,125,0.3);
+        }
+        .hero-sub-cta:hover { background: var(--verde-wa-escuro); transform: translateY(-2px); }
+
+        /* SECTIONS */
+        section { padding: 90px 5%; }
+        .section-center { text-align: center; }
+        .section-tag {
+            display: inline-block;
+            background: rgba(107,76,59,0.08);
+            color: var(--marrom); padding: 5px 16px;
+            border-radius: 50px; font-size: 0.72rem;
+            font-weight: 700; margin-bottom: 1rem;
+            letter-spacing: 1.5px; text-transform: uppercase;
+        }
+        .section-title {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(1.9rem, 4vw, 3rem);
+            font-weight: 700; color: var(--marrom-escuro);
+            line-height: 1.2; margin-bottom: 1rem;
+        }
+        .section-title em { font-style: italic; font-weight: 400; color: var(--marrom-claro); }
+        .section-sub {
+            font-size: 1rem; color: var(--texto-medio);
+            font-weight: 400; line-height: 1.8;
+            max-width: 560px; margin: 0 auto 3rem;
+        }
+
+        /* BENEFICIOS */
+        .beneficios { background: var(--branco); }
+        .beneficios-objecao {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-size: clamp(0.95rem, 2vw, 1.15rem);
+            font-weight: 500;
+            color: #fff;
+            background: var(--marrom);
+            border-radius: 16px;
+            padding: 22px 40px;
+            margin: 0 auto 3.5rem;
+            max-width: 680px;
+            line-height: 1.6;
+        }
+        .beneficios-objecao span {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(1.1rem, 2.2vw, 1.4rem);
+            font-weight: 700;
+            font-style: italic;
+            text-decoration: underline;
+            text-underline-offset: 5px;
+        }
+        .beneficios-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1.5rem;
+            max-width: 860px;
+            margin: 0 auto;
+        }
+        .beneficio-card {
+            background: var(--bege-claro); border-radius: 20px;
+            padding: 2rem;
+            transition: transform 0.3s, box-shadow 0.3s;
+            display: flex; flex-direction: column;
+            align-items: center; text-align: center; gap: 0.8rem;
+        }
+        .beneficio-card:hover { transform: translateY(-5px); box-shadow: 0 12px 30px rgba(107,76,59,0.1); }
+        .beneficio-icon {
+            width: 52px; height: 52px; border-radius: 14px;
+            background: rgba(107,76,59,0.1);
+            display: flex; align-items: center; justify-content: center;
+            font-size: 1.3rem; margin: 0 auto;
+        }
+        .beneficio-card h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.15rem; font-weight: 700;
+            color: var(--marrom); text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        .beneficio-card p { font-size: 0.9rem; color: var(--texto-medio); line-height: 1.7; font-weight: 400; }
+
+        /* METODO */
+        .metodo { background: var(--bege-claro); }
+        .timeline {
+            position: relative;
+            max-width: 860px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+        }
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 50%; top: 0; bottom: 0;
+            width: 1px;
+            background: linear-gradient(to bottom, transparent, var(--marrom-claro), transparent);
+            transform: translateX(-50%);
+        }
+        .timeline-item {
+            background: var(--branco); border-radius: 20px;
+            padding: 2rem;
+            border-top: 3px solid var(--marrom-claro);
+            transition: transform 0.3s, box-shadow 0.3s;
+            position: relative;
+            display: flex; flex-direction: column;
+            align-items: center; text-align: center; gap: 0.7rem;
+        }
+        .timeline-item:hover { transform: translateY(-5px); box-shadow: 0 12px 30px rgba(107,76,59,0.1); }
+        .pilar-icon {
+            width: 48px; height: 48px;
+            background: rgba(107,76,59,0.08);
+            border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            margin: 0 auto;
+        }
+        .pilar-numeral {
+            font-family: 'Playfair Display', serif;
+            font-size: 0.72rem; font-weight: 400;
+            color: var(--marrom-claro); letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+        .timeline-item h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.1rem; font-weight: 700;
+            color: var(--marrom); text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        .timeline-item p { font-size: 0.87rem; color: var(--texto-medio); line-height: 1.7; font-weight: 400; }
+
+        /* INDICACOES */
+        .indicacoes { background: var(--branco); }
+        .banner-placeholder {
+            width: 100%; max-width: 720px;
+            border-radius: 20px;
+            background: linear-gradient(135deg, var(--bege) 0%, rgba(160,120,96,0.3) 100%);
+            display: flex; align-items: center; justify-content: center;
+            font-family: 'Playfair Display', serif;
+            font-size: 0.95rem; font-style: italic;
+            color: var(--marrom-claro);
+            margin: 0 auto 2.5rem;
+            border: 2px dashed rgba(107,76,59,0.2);
+            aspect-ratio: 1 / 1;
+            max-height: 480px;
+        }
+        .indicacoes-lista {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1rem;
+            max-width: 720px;
+            margin: 0 auto;
+        }
+        .indicacao-item {
+            background: var(--bege-claro);
+            border-radius: 14px; padding: 1.2rem 1rem;
+            text-align: center;
+            transition: all 0.3s;
+        }
+        .indicacao-item:hover { background: var(--marrom); }
+        .indicacao-item:hover h4,
+        .indicacao-item:hover p { color: #fff; }
+        .indicacao-item h4 {
+            font-family: 'Playfair Display', serif;
+            font-size: 0.95rem; font-weight: 700;
+            color: var(--marrom); text-transform: uppercase;
+            letter-spacing: 0.5px; margin-bottom: 0.25rem;
+        }
+        .indicacao-item p { font-size: 0.78rem; color: var(--texto-medio); font-weight: 400; }
+
+        /* GALERIA */
+        .galeria { background: var(--bege-claro); }
+        .checkpoints {
+            display: flex; flex-wrap: wrap;
+            justify-content: center; gap: 0.8rem;
+            max-width: 900px; margin: 0 auto 3rem;
+        }
+        .checkpoint {
+            display: flex; align-items: center; gap: 8px;
+            background: var(--branco); border-radius: 50px;
+            padding: 10px 20px;
+            font-size: 0.82rem; font-weight: 600;
+            color: var(--marrom);
+            box-shadow: 0 2px 10px rgba(107,76,59,0.06);
+        }
+        .checkpoint i { color: var(--verde-wa); font-size: 0.75rem; }
+
+        /* CARROSSEL GALERIA — formato quadrado feed */
+        .carrossel-galeria-wrapper {
+            max-width: 480px;
+            margin: 0 auto;
+            position: relative;
+            overflow: hidden;
+            border-radius: 20px;
+        }
+        .carrossel-galeria-track {
+            display: flex;
+            transition: transform 0.6s ease;
+        }
+        .carrossel-galeria-slide {
+            min-width: 100%;
+            aspect-ratio: 1 / 1;
+            background: linear-gradient(135deg, var(--bege) 0%, rgba(160,120,96,0.25) 100%);
+            display: flex; align-items: center; justify-content: center;
+            font-family: 'Playfair Display', serif;
+            font-size: 0.9rem; font-style: italic;
+            color: var(--marrom-claro);
+        }
+        .carrossel-galeria-slide img { width: 100%; height: 100%; object-fit: cover; }
+        .carrossel-dots {
+            display: flex; justify-content: center; gap: 8px; margin-top: 1.2rem;
+        }
+        .dot {
+            width: 8px; height: 8px; border-radius: 50%;
+            background: rgba(107,76,59,0.2); cursor: pointer;
+            transition: all 0.3s; border: none;
+        }
+        .dot.active { background: var(--marrom); width: 24px; border-radius: 4px; }
+
+        /* DEPOIMENTOS */
+        .depoimentos { background: var(--branco); }
+        .dep-carrossel-wrapper {
+            max-width: 480px;
+            margin: 0 auto;
+            overflow: hidden;
+            border-radius: 20px;
+            position: relative;
+        }
+        .dep-track {
+            display: flex; transition: transform 0.6s ease;
+        }
+        .dep-slide {
+            min-width: 100%;
+            aspect-ratio: 1 / 1;
+        }
+        .dep-img-placeholder {
+            width: 100%; height: 100%;
+            background: linear-gradient(135deg, var(--bege) 0%, rgba(160,120,96,0.2) 100%);
+            border-radius: 20px;
+            display: flex; align-items: center; justify-content: center;
+            font-family: 'Playfair Display', serif;
+            font-size: 0.95rem; font-style: italic;
+            color: var(--marrom-claro);
+            border: 2px dashed rgba(107,76,59,0.15);
+        }
+        .dep-img-placeholder img { width: 100%; height: 100%; object-fit: cover; border-radius: 20px; }
+        .dep-dots {
+            display: flex; justify-content: center; gap: 8px; margin-top: 1.2rem;
+        }
+        .dep-google-link {
+            display: inline-flex; align-items: center; gap: 8px;
+            margin-top: 2rem;
+            font-size: 0.85rem; color: var(--marrom-claro);
+            text-decoration: none; font-weight: 600;
+            transition: color 0.3s;
+        }
+        .dep-google-link:hover { color: var(--marrom); }
+
+        /* FLOAT WA */
+        .wa-float {
+            position: fixed; bottom: 24px; right: 24px; z-index: 999;
+            background: var(--verde-wa); color: #fff;
+            width: 58px; height: 58px; border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 1.7rem; text-decoration: none;
+            box-shadow: 0 6px 24px rgba(76,175,125,0.35);
+            transition: transform 0.3s;
+        }
+        .wa-float:hover { transform: scale(1.1); }
+
+        /* MOBILE */
+        @media (max-width: 768px) {
+            nav { padding: 0 4%; }
+            .nav-links, .nav-cta { display: none; }
+            .hamburger { display: flex; }
+            .beneficios-grid { grid-template-columns: 1fr; max-width: 420px; margin: 0 auto; }
+            .timeline { grid-template-columns: 1fr; }
+            .timeline::before { display: none; }
+            .indicacoes-lista { grid-template-columns: repeat(2, 1fr); }
+            .beneficios-objecao { padding: 18px 22px; }
+        }
+        @media (max-width: 480px) {
+            .indicacoes-lista { grid-template-columns: 1fr; }
+            .hero h1 { font-size: 2rem; }
+            .carrossel-galeria-wrapper, .dep-carrossel-wrapper { max-width: 100%; }
+        }
+    </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+    <div class="nav-logo">
+        <img src="logo.png" alt="Conexão Clinic Pilates">
+    </div>
+    <ul class="nav-links">
+        <li><a href="#metodo">Método</a></li>
+        <li><a href="#indicacoes">Indicações</a></li>
+        <li><a href="#planos">Planos</a></li>
+        <li><a href="#depoimentos">Depoimentos</a></li>
+        <li><a href="#contato">Contato</a></li>
+    </ul>
+    <a href="https://wa.me/5511963717394?text=Ol%C3%A1%2C%20vim%20pelo%20site%20e%20gostaria%20de%20agendar%20minha%20aula%20experimental%21" target="_blank" class="nav-cta">
+        <i class="fab fa-whatsapp"></i> Agendar Aula
+    </a>
+    <div class="hamburger" onclick="toggleMenu()">
+        <span></span><span></span><span></span>
+    </div>
+</nav>
+
+<div class="mobile-menu" id="mobileMenu">
+    <a href="#metodo" onclick="toggleMenu()">Método</a>
+    <a href="#indicacoes" onclick="toggleMenu()">Indicações</a>
+    <a href="#planos" onclick="toggleMenu()">Planos</a>
+    <a href="#depoimentos" onclick="toggleMenu()">Depoimentos</a>
+    <a href="#contato" onclick="toggleMenu()">Contato</a>
+    <a href="https://wa.me/5511963717394?text=Ol%C3%A1%2C%20vim%20pelo%20site%20e%20gostaria%20de%20agendar%20minha%20aula%20experimental%21" target="_blank" class="nav-cta" style="justify-content:center; margin-top:0.5rem;">
+        <i class="fab fa-whatsapp"></i> Agendar Aula Experimental
+    </a>
+</div>
+
+<!-- HERO -->
+<section class="hero" id="inicio">
+    <div class="hero-content">
+        <span class="hero-tag">Studio de Pilates — Vila Granada, São Paulo</span>
+        <h1><span class="destaque">Conecte-se</span> com seu corpo e mente com o poder do Pilates</h1>
+        <a href="https://wa.me/5511963717394?text=Ol%C3%A1%2C%20vim%20pelo%20site%20e%20gostaria%20de%20agendar%20minha%20aula%20experimental%20gr%C3%A1tis%21" target="_blank" class="hero-sub-cta">
+            <i class="fab fa-whatsapp"></i> Agende sua aula experimental grátis
+        </a>
+    </div>
+</section>
+
+<!-- BENEFICIOS -->
+<section class="beneficios section-center" id="beneficios">
+    <span class="section-tag">Por que Pilates?</span>
+    <h2 class="section-title">O que o Pilates pode <em>transformar</em> na sua vida</h2>
+    <div class="beneficios-objecao">
+        Muito além do <span>alongamento</span> — o Pilates é ciência aplicada ao seu corpo, com resultados reais e duradouros.
+    </div>
+    <div class="beneficios-grid">
+        <div class="beneficio-card">
+            <div class="beneficio-icon"><i class="fas fa-heart-pulse" style="color:var(--marrom);"></i></div>
+            <h3>Alívio de Dores</h3>
+            <p>Coluna, quadril, joelhos e articulações — o Pilates atua diretamente nas causas das dores crônicas, trazendo alívio real e duradouro.</p>
+        </div>
+        <div class="beneficio-card">
+            <div class="beneficio-icon"><i class="fas fa-person-walking" style="color:var(--marrom);"></i></div>
+            <h3>Fortalecimento</h3>
+            <p>Core, postura e equilíbrio muscular. Cada exercício é pensado para fortalecer o corpo de forma global e harmoniosa.</p>
+        </div>
+        <div class="beneficio-card">
+            <div class="beneficio-icon"><i class="fas fa-sun" style="color:var(--marrom);"></i></div>
+            <h3>Qualidade de Vida</h3>
+            <p>Mais disposição, sono de qualidade e bem-estar no dia a dia. O Pilates transforma não só o corpo, mas o estilo de vida.</p>
+        </div>
+        <div class="beneficio-card">
+            <div class="beneficio-icon"><i class="fas fa-medal" style="color:var(--marrom);"></i></div>
+            <h3>Desempenho</h3>
+            <p>Otimiza o desempenho das atividades diárias e de outras atividades físicas, elevando sua capacidade funcional.</p>
+        </div>
+    </div>
+</section>
+
+<!-- METODO -->
+<section class="metodo section-center" id="metodo">
+    <span class="section-tag">Nosso Método</span>
+    <h2 class="section-title">Os pilares que <strong style="font-weight:900;">sustentam</strong> o <em>Método Conexão</em></h2>
+    <p class="section-sub">Uma jornada estruturada, do primeiro contato a cada conquista. Conheça os fundamentos que guiam cada aula.</p>
+    <div class="timeline">
+        <div class="timeline-item">
+            <div class="pilar-icon"><i class="fas fa-columns" style="color:var(--marrom); font-size:1.1rem;"></i></div>
+            <div class="pilar-numeral">i</div>
+            <h3>Avaliação Inicial Completa</h3>
+            <p>Antes de começar, realizamos uma anamnese detalhada para entender seu histórico de saúde, objetivos e limitações. Nada aqui é genérico.</p>
+        </div>
+        <div class="timeline-item">
+            <div class="pilar-icon"><i class="fas fa-columns" style="color:var(--marrom); font-size:1.1rem;"></i></div>
+            <div class="pilar-numeral">ii</div>
+            <h3>Plano Personalizado</h3>
+            <p>Com base na avaliação, montamos um plano de exercícios adaptado exclusivamente para o seu corpo e seus objetivos.</p>
+        </div>
+        <div class="timeline-item">
+            <div class="pilar-icon"><i class="fas fa-columns" style="color:var(--marrom); font-size:1.1rem;"></i></div>
+            <div class="pilar-numeral">iii</div>
+            <h3>Acompanhamento de Progresso</h3>
+            <p>Reavaliações periódicas para ajustar o plano conforme sua evolução. Você sempre saberá onde chegou e para onde vai.</p>
+        </div>
+        <div class="timeline-item">
+            <div class="pilar-icon"><i class="fas fa-columns" style="color:var(--marrom); font-size:1.1rem;"></i></div>
+            <div class="pilar-numeral">iv</div>
+            <h3>Time de Fisioterapeutas</h3>
+            <p>Todas as aulas são conduzidas por fisioterapeutas especializados. Segurança técnica em cada movimento.</p>
+        </div>
+        <div class="timeline-item">
+            <div class="pilar-icon"><i class="fas fa-columns" style="color:var(--marrom); font-size:1.1rem;"></i></div>
+            <div class="pilar-numeral">v</div>
+            <h3>Turmas Reduzidas</h3>
+            <p>No máximo 4 alunos por turma. Atenção individual, correções precisas e um ambiente que respeita o seu ritmo.</p>
+        </div>
+        <div class="timeline-item">
+            <div class="pilar-icon"><i class="fas fa-columns" style="color:var(--marrom); font-size:1.1rem;"></i></div>
+            <div class="pilar-numeral">vi</div>
+            <h3>Atendimento Humanizado</h3>
+            <p>Você não é um número aqui. Cada aluno é acolhido com cuidado genuíno — do primeiro contato à última aula do plano.</p>
+        </div>
+    </div>
+</section>
+
+<!-- INDICACOES -->
+<section class="indicacoes section-center" id="indicacoes">
+    <span class="section-tag">Para quem é?</span>
+    <h2 class="section-title">O Pilates é para <em>você</em></h2>
+    <p class="section-sub">Independente da sua condição ou objetivo, temos uma abordagem pensada para o seu momento.</p>
+    <div class="banner-placeholder">
+        Montagem de fotos — substituir pela imagem real (formato quadrado)
+    </div>
+    <div class="indicacoes-lista">
+        <div class="indicacao-item">
+            <h4>Gestantes</h4>
+            <p>Movimento seguro em cada fase</p>
+        </div>
+        <div class="indicacao-item">
+            <h4>Dores Crônicas</h4>
+            <p>Coluna, joelho, quadril e mais</p>
+        </div>
+        <div class="indicacao-item">
+            <h4>Pós-operatório</h4>
+            <p>Reabilitação com segurança</p>
+        </div>
+        <div class="indicacao-item">
+            <h4>Melhor Idade</h4>
+            <p>Equilíbrio, força e autonomia</p>
+        </div>
+        <div class="indicacao-item">
+            <h4>Atletas</h4>
+            <p>Performance e prevenção</p>
+        </div>
+        <div class="indicacao-item">
+            <h4>Iniciantes</h4>
+            <p>Começar do zero com apoio</p>
+        </div>
+    </div>
+</section>
+
+<!-- GALERIA -->
+<section class="galeria section-center" id="espaco">
+    <span class="section-tag">Nosso Espaço</span>
+    <h2 class="section-title">Um ambiente pensado <em>para você</em></h2>
+    <div class="checkpoints">
+        <div class="checkpoint"><i class="fas fa-check"></i> Studio térreo, sem escadas</div>
+        <div class="checkpoint"><i class="fas fa-check"></i> Máximo 4 alunos por horário</div>
+        <div class="checkpoint"><i class="fas fa-check"></i> Ambiente climatizado</div>
+        <div class="checkpoint"><i class="fas fa-check"></i> Flexibilidade para agendamentos</div>
+        <div class="checkpoint"><i class="fas fa-check"></i> Profissionais treinados e altamente capacitados</div>
+        <div class="checkpoint"><i class="fas fa-check"></i> Atendimento direcionado para os seus objetivos</div>
+    </div>
+    <div class="carrossel-galeria-wrapper">
+        <div class="carrossel-galeria-track" id="galeriaTrack">
+            <div class="carrossel-galeria-slide">Foto 1 — substituir pela imagem real</div>
+            <div class="carrossel-galeria-slide">Foto 2 — substituir pela imagem real</div>
+            <div class="carrossel-galeria-slide">Foto 3 — substituir pela imagem real</div>
+            <div class="carrossel-galeria-slide">Foto 4 — substituir pela imagem real</div>
+            <div class="carrossel-galeria-slide">Foto 5 — substituir pela imagem real</div>
+        </div>
+    </div>
+    <div class="carrossel-dots" id="galeriaDots">
+        <button class="dot active"></button>
+        <button class="dot"></button>
+        <button class="dot"></button>
+        <button class="dot"></button>
+        <button class="dot"></button>
+    </div>
+</section>
+
+<!-- DEPOIMENTOS -->
+<section class="depoimentos section-center" id="depoimentos">
+    <span class="section-tag">Depoimentos</span>
+    <h2 class="section-title">Quem já <em>sentiu</em> a diferença</h2>
+    <p class="section-sub">Resultados reais de quem escolheu a Conexão Clinic para cuidar do seu corpo.</p>
+    <div class="dep-carrossel-wrapper">
+        <div class="dep-track" id="depTrack">
+            <div class="dep-slide">
+                <div class="dep-img-placeholder">Print do Google — substituir pela imagem real</div>
+            </div>
+            <div class="dep-slide">
+                <div class="dep-img-placeholder">Print do Google — substituir pela imagem real</div>
+            </div>
+            <div class="dep-slide">
+                <div class="dep-img-placeholder">Print do Google — substituir pela imagem real</div>
+            </div>
+            <div class="dep-slide">
+                <div class="dep-img-placeholder">Print do Google — substituir pela imagem real</div>
+            </div>
+            <div class="dep-slide">
+                <div class="dep-img-placeholder">Print do Google — substituir pela imagem real</div>
+            </div>
+        </div>
+    </div>
+    <div class="dep-dots" id="depDots">
+        <button class="dot active"></button>
+        <button class="dot"></button>
+        <button class="dot"></button>
+        <button class="dot"></button>
+        <button class="dot"></button>
+    </div>
+    <br>
+    <a href="https://www.google.com/maps/place/Conexão+Clinic+Studio+de+Pilates+São+Paulo" target="_blank" class="dep-google-link">
+        <i class="fab fa-google"></i> Ver todos os depoimentos no Google
+    </a>
+</section>
+html
+<!-- PLANOS -->
+<section style="background: var(--bege-claro); padding: 90px 5%;" id="planos" class="section-center">
+    <span class="section-tag">Investimento</span>
+    <h2 class="section-title">Escolha o plano <em>ideal para você</em></h2>
+    <p class="section-sub">Quanto mais você investe na constância, mais o seu corpo agradece. Escolha a frequência que melhor se encaixa na sua rotina.</p>
+
+    <div style="display:flex; gap:1rem; justify-content:center; margin-bottom:3rem; flex-wrap:wrap;">
+        <button class="tab-plano active" onclick="switchTab('2x')" id="btn-2x">2x por semana</button>
+        <button class="tab-plano" onclick="switchTab('1x')" id="btn-1x">1x por semana</button>
+    </div>
+
+    <!-- TAB 2x -->
+    <div id="tab-2x" class="tab-content-planos">
+        <div class="planos-grid">
+
+            <div class="plano-card plano-destaque">
+                <div class="faixa-diagonal">Mais contratado</div>
+                <div class="plano-estrela"><i class="fas fa-star"></i></div>
+                <div class="plano-nome-topo">Semestral</div>
+                <div class="plano-detalhe-topo">48 aulas · 180 dias</div>
+                <div class="plano-preco-bloco">
+                    <span class="plano-de">6x de</span>
+                    <div class="plano-valor">R$&nbsp;290</div>
+                    <span class="plano-ou">ou R$ 1.740 à vista</span>
+                </div>
+                <ul class="plano-lista">
+                    <li><i class="fas fa-check"></i> 2 aulas por semana</li>
+                    <li><i class="fas fa-check"></i> Avaliação inicial inclusa</li>
+                    <li><i class="fas fa-check"></i> Turma máx. 4 alunos</li>
+                    <li><i class="fas fa-check"></i> Conduzido por fisioterapeutas</li>
+                    <li><i class="fas fa-check"></i> Melhor custo-benefício</li>
+                </ul>
+                <a href="https://wa.me/5511963717394?text=Ol%C3%A1%2C%20tenho%20interesse%20no%20Plano%20Semestral%202x%20por%20semana%21" target="_blank" class="plano-btn verde">
+                    <i class="fab fa-whatsapp"></i> Quero este plano
+                </a>
+            </div>
+
+            <div class="plano-card">
+                <div class="plano-nome-topo">Trimestral</div>
+                <div class="plano-detalhe-topo">24 aulas · 90 dias</div>
+                <div class="plano-preco-bloco">
+                    <span class="plano-de">3x de</span>
+                    <div class="plano-valor secundario">R$&nbsp;305</div>
+                    <span class="plano-ou">ou R$ 915 à vista</span>
+                </div>
+                <ul class="plano-lista">
+                    <li><i class="fas fa-check"></i> 2 aulas por semana</li>
+                    <li><i class="fas fa-check"></i> Avaliação inicial inclusa</li>
+                    <li><i class="fas fa-check"></i> Turma máx. 4 alunos</li>
+                    <li><i class="fas fa-check"></i> Conduzido por fisioterapeutas</li>
+                </ul>
+                <a href="https://wa.me/5511963717394?text=Ol%C3%A1%2C%20tenho%20interesse%20no%20Plano%20Trimestral%202x%20por%20semana%21" target="_blank" class="plano-btn marrom">
+                    <i class="fab fa-whatsapp"></i> Quero este plano
+                </a>
+            </div>
+
+            <div class="plano-card">
+                <div class="plano-nome-topo">Mensal</div>
+                <div class="plano-detalhe-topo">8 aulas · 30 dias</div>
+                <div class="plano-preco-bloco">
+                    <span class="plano-de">pagamento único</span>
+                    <div class="plano-valor secundario">R$&nbsp;320</div>
+                    <span class="plano-ou">Renovação a cada 4 semanas</span>
+                </div>
+                <ul class="plano-lista">
+                    <li><i class="fas fa-check"></i> 2 aulas por semana</li>
+                    <li><i class="fas fa-check"></i> Avaliação inicial inclusa</li>
+                    <li><i class="fas fa-check"></i> Turma máx. 4 alunos</li>
+                    <li><i class="fas fa-check"></i> Conduzido por fisioterapeutas</li>
+                </ul>
+                <a href="https://wa.me/5511963717394?text=Ol%C3%A1%2C%20tenho%20interesse%20no%20Plano%20Mensal%202x%20por%20semana%21" target="_blank" class="plano-btn marrom">
+                    <i class="fab fa-whatsapp"></i> Quero este plano
+                </a>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- TAB 1x -->
+    <div id="tab-1x" class="tab-content-planos" style="display:none;">
+        <div class="planos-grid">
+
+            <div class="plano-card plano-destaque">
+                <div class="faixa-diagonal">Mais contratado</div>
+                <div class="plano-estrela"><i class="fas fa-star"></i></div>
+                <div class="plano-nome-topo">Semestral</div>
+                <div class="plano-detalhe-topo">24 aulas · 180 dias</div>
+                <div class="plano-preco-bloco">
+                    <span class="plano-de">6x de</span>
+                    <div class="plano-valor">R$&nbsp;210</div>
+                    <span class="plano-ou">ou R$ 1.260 à vista</span>
+                </div>
+                <ul class="plano-lista">
+                    <li><i class="fas fa-check"></i> 1 aula por semana</li>
+                    <li><i class="fas fa-check"></i> Avaliação inicial inclusa</li>
+                    <li><i class="fas fa-check"></i> Turma máx. 4 alunos</li>
+                    <li><i class="fas fa-check"></i> Conduzido por fisioterapeutas</li>
+                    <li><i class="fas fa-check"></i> Melhor custo-benefício</li>
+                </ul>
+                <a href="https://wa.me/5511963717394?text=Ol%C3%A1%2C%20tenho%20interesse%20no%20Plano%20Semestral%201x%20por%20semana%21" target="_blank" class="plano-btn verde">
+                    <i class="fab fa-whatsapp"></i> Quero este plano
+                </a>
+            </div>
+
+            <div class="plano-card">
+                <div class="plano-nome-topo">Trimestral</div>
+                <div class="plano-detalhe-topo">12 aulas · 90 dias</div>
+                <div class="plano-preco-bloco">
+                    <span class="plano-de">3x de</span>
+                    <div class="plano-valor secundario">R$&nbsp;225</div>
+                    <span class="plano-ou">ou R$ 675 à vista</span>
+                </div>
+                <ul class="plano-lista">
+                    <li><i class="fas fa-check"></i> 1 aula por semana</li>
+                    <li><i class="fas fa-check"></i> Avaliação inicial inclusa</li>
+                    <li><i class="fas fa-check"></i> Turma máx. 4 alunos</li>
+                    <li><i class="fas fa-check"></i> Conduzido por fisioterapeutas</li>
+                </ul>
+                <a href="https://wa.me/5511963717394?text=Ol%C3%A1%2C%20tenho%20interesse%20no%20Plano%20Trimestral%201x%20por%20semana%21" target="_blank" class="plano-btn marrom">
+                    <i class="fab fa-whatsapp"></i> Quero este plano
+                </a>
+            </div>
+
+            <div class="plano-card">
+                <div class="plano-nome-topo">Mensal</div>
+                <div class="plano-detalhe-topo">4 aulas · 30 dias</div>
+                <div class="plano-preco-bloco">
+                    <span class="plano-de">pagamento único</span>
+                    <div class="plano-valor secundario">R$&nbsp;240</div>
+                    <span class="plano-ou">Renovação a cada 4 semanas</span>
+                </div>
+                <ul class="plano-lista">
+                    <li><i class="fas fa-check"></i> 1 aula por semana</li>
+                    <li><i class="fas fa-check"></i> Avaliação inicial inclusa</li>
+                    <li><i class="fas fa-check"></i> Turma máx. 4 alunos</li>
+                    <li><i class="fas fa-check"></i> Conduzido por fisioterapeutas</li>
+                </ul>
+                <a href="https://wa.me/5511963717394?text=Ol%C3%A1%2C%20tenho%20interesse%20no%20Plano%20Mensal%201x%20por%20semana%21" target="_blank" class="plano-btn marrom">
+                    <i class="fab fa-whatsapp"></i> Quero este plano
+                </a>
+            </div>
+
+        </div>
+    </div>
+
+    <div style="margin-top:3rem; text-align:center;">
+        <p style="font-size:0.78rem; color:var(--texto-medio); font-weight:700; margin-bottom:1rem; text-transform:uppercase; letter-spacing:1.5px;">Formas de pagamento</p>
+        <div style="display:flex; justify-content:center; gap:1rem; flex-wrap:wrap; margin-bottom:1.2rem;">
+            <span class="pagamento-pill"><i class="fas fa-qrcode"></i> PIX</span>
+            <span class="pagamento-pill"><i class="fas fa-credit-card"></i> Cartão de Crédito</span>
+        </div>
+        <p style="font-size:0.8rem; color:var(--texto-medio); font-style:italic;">Não aceitamos Gympass, Totalpass ou Classpass.</p>
+    </div>
+</section>
+
+<!-- CONTATO -->
+<section style="background: var(--branco); padding: 90px 5%;" id="contato">
+    <div style="display:grid; grid-template-columns:1fr 1fr; gap:4rem; align-items:start; max-width:1100px; margin:0 auto;">
+        <div>
+            <span class="section-tag">Contato</span>
+            <h2 class="section-title">Vamos começar <em>sua jornada?</em></h2>
+            <p class="section-sub" style="margin:0 0 2rem;">Estamos prontos para te receber. Agende sua aula experimental e venha sentir a diferença.</p>
+            <div style="display:flex; flex-direction:column; gap:1.2rem; margin-bottom:2.5rem;">
+                <div class="contato-item">
+                    <div class="contato-icon"><i class="fas fa-map-marker-alt"></i></div>
+                    <div>
+                        <strong>Endereço</strong>
+                        <p>Rua Itinguçu, 406 — Vila Granada, São Paulo</p>
+                        <p style="font-size:0.82rem; color:var(--marrom-claro); margin-top:2px;">Em frente à Loja Frajola · Studio térreo, sem escadas</p>
+                    </div>
+                </div>
+                <div class="contato-item">
+                    <div class="contato-icon"><i class="fab fa-instagram"></i></div>
+                    <div>
+                        <strong>Instagram</strong>
+                        <p><a href="https://instagram.com/conexaoclinic" target="_blank" style="color:var(--marrom); text-decoration:none; font-weight:600;">@conexaoclinic</a></p>
+                    </div>
+                </div>
+                <div class="contato-item">
+                    <div class="contato-icon" style="background:rgba(76,175,125,0.1); color:var(--verde-wa);"><i class="fab fa-whatsapp"></i></div>
+                    <div>
+                        <strong>WhatsApp</strong>
+                        <p>(11) 96371-7394</p>
+                    </div>
+                </div>
+            </div>
+            <a href="https://wa.me/5511963717394?text=Ol%C3%A1%2C%20vim%20pelo%20site%20e%20gostaria%20de%20agendar%20minha%20aula%20experimental%21" target="_blank" class="btn-wa" style="display:inline-flex; width:fit-content;">
+                <i class="fab fa-whatsapp"></i> Agendar Aula Experimental
+            </a>
+        </div>
+        <div>
+            <div style="border-radius:20px; overflow:hidden; height:400px; box-shadow:0 8px 30px rgba(107,76,59,0.1);">
+                <iframe
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3657.0!2d-46.5!3d-23.5!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x94ce617b372512b5%3A0x7f50d9777217d8dd!2sConex%C3%A3o%20Clinic%20Studio%20de%20Pilates%20S%C3%A3o%20Paulo!5e0!3m2!1spt-BR!2sbr!4v1"
+                    width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy">
+                </iframe>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- FOOTER -->
+<footer style="background:var(--marrom-escuro); color:rgba(255,255,255,0.7); padding:48px 5%; text-align:center;">
+    <div style="margin-bottom:1rem;">
+        <img src="logo.png" alt="Conexão Clinic Pilates" style="height:56px; filter:brightness(0) invert(1); opacity:0.85;">
+    </div>
+    <p style="font-size:0.82rem; margin-bottom:1.8rem; font-style:italic; color:rgba(255,255,255,0.5);">Studio de Pilates — Vila Granada, São Paulo</p>
+    <div style="display:flex; justify-content:center; gap:2rem; margin-bottom:2rem; flex-wrap:wrap;">
+        <a href="#metodo" style="color:rgba(255,255,255,0.55); text-decoration:none; font-size:0.82rem; font-weight:600; text-transform:uppercase; letter-spacing:1px;">Método</a>
+        <a href="#planos" style="color:rgba(255,255,255,0.55); text-decoration:none; font-size:0.82rem; font-weight:600; text-transform:uppercase; letter-spacing:1px;">Planos</a>
+        <a href="#depoimentos" style="color:rgba(255,255,255,0.55); text-decoration:none; font-size:0.82rem; font-weight:600; text-transform:uppercase; letter-spacing:1px;">Depoimentos</a>
+        <a href="#contato" style="color:rgba(255,255,255,0.55); text-decoration:none; font-size:0.82rem; font-weight:600; text-transform:uppercase; letter-spacing:1px;">Contato</a>
+        <a href="https://instagram.com/conexaoclinic" target="_blank" style="color:rgba(255,255,255,0.55); text-decoration:none; font-size:0.82rem; font-weight:600;"><i class="fab fa-instagram"></i> @conexaoclinic</a>
+    </div>
+    <p style="font-size:0.75rem; color:rgba(255,255,255,0.3);">Desde 2024 — Conexão Clinic Studio de Pilates. Todos os direitos reservados.</p>
+</footer>
+
+<!-- BOTAO FLUTUANTE -->
+<a href="https://wa.me/5511963717394?text=Ol%C3%A1%2C%20vim%20pelo%20site%20e%20gostaria%20de%20agendar%20minha%20aula%20experimental%21" target="_blank" class="wa-float">
+    <i class="fab fa-whatsapp"></i>
+</a>
+
+<style>
+    /* PLANOS */
+    .tab-plano {
+        padding: 13px 32px; border-radius: 50px;
+        border: 2px solid var(--marrom-escuro);
+        background: transparent; color: var(--marrom-escuro);
+        font-family: 'Plus Jakarta Sans', sans-serif;
+        font-size: 0.88rem; font-weight: 700;
+        cursor: pointer; transition: all 0.3s;
+        letter-spacing: 0.5px; text-transform: uppercase;
+    }
+    .tab-plano.active {
+        background: var(--marrom-escuro); color: #fff;
+    }
+    .tab-plano:hover:not(.active) { background: rgba(61,43,31,0.06); }
+
+    .planos-grid {
+        display: grid;
+        grid-template-columns: 1.15fr 1fr 1fr;
+        gap: 1.5rem;
+        max-width: 980px;
+        margin: 0 auto;
+        align-items: start;
+    }
+
+    .plano-card {
+        background: var(--branco); border-radius: 24px;
+        padding: 2.2rem 2rem; position: relative;
+        border: 1.5px solid rgba(107,76,59,0.12);
+        transition: transform 0.3s, box-shadow 0.3s;
+        text-align: left; overflow: hidden;
+    }
+    .plano-card:hover { transform: translateY(-6px); box-shadow: 0 16px 40px rgba(107,76,59,0.12); }
+
+    .plano-destaque {
+        background: var(--marrom-escuro);
+        border-color: var(--marrom-escuro);
+        padding-top: 2.8rem;
+    }
+
+    /* FAIXA DIAGONAL */
+    .faixa-diagonal {
+        position: absolute;
+        top: 22px; right: -32px;
+        background: var(--verde-wa);
+        color: #fff;
+        font-size: 0.68rem;
+        font-weight: 800;
+        letter-spacing: 1px;
+        text-transform: uppercase;
+        padding: 5px 40px;
+        transform: rotate(45deg);
+        box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+        white-space: nowrap;
+    }
+
+    .plano-estrela {
+        font-size: 1.2rem;
+        color: #D4A853;
+        margin-bottom: 0.6rem;
+    }
+
+    .plano-nome-topo {
+        font-family: 'Playfair Display', serif;
+        font-size: 1.5rem; font-weight: 700;
+        color: var(--marrom-escuro); margin-bottom: 0.2rem;
+    }
+    .plano-destaque .plano-nome-topo { color: #fff; }
+
+    .plano-detalhe-topo {
+        font-size: 0.8rem; color: var(--texto-medio);
+        font-weight: 400; margin-bottom: 1.5rem;
+        padding-bottom: 1.2rem;
+        border-bottom: 1px solid rgba(107,76,59,0.12);
+    }
+    .plano-destaque .plano-detalhe-topo {
+        color: rgba(255,255,255,0.55);
+        border-bottom-color: rgba(255,255,255,0.12);
+    }
+
+    .plano-preco-bloco { margin-bottom: 1.5rem; }
+    .plano-de {
+        font-size: 0.78rem; color: var(--texto-medio);
+        font-weight: 400; display: block; margin-bottom: 2px;
+    }
+    .plano-destaque .plano-de { color: rgba(255,255,255,0.55); }
+
+    .plano-valor {
+        font-family: 'Plus Jakarta Sans', sans-serif;
+        font-size: 2.8rem; font-weight: 800;
+        color: var(--verde-wa); line-height: 1.1;
+        letter-spacing: -1px;
+    }
+    .plano-valor.secundario {
+        color: var(--marrom); font-size: 2.4rem;
+    }
+
+    .plano-ou {
+        font-size: 0.78rem; color: var(--texto-medio);
+        font-weight: 400; display: block; margin-top: 4px;
+    }
+    .plano-destaque .plano-ou { color: rgba(255,255,255,0.5); }
+
+    .plano-lista {
+        list-style: none; display: flex;
+        flex-direction: column; gap: 0.65rem; margin-bottom: 1.8rem;
+    }
+    .plano-lista li {
+        font-size: 0.85rem; color: var(--texto-medio);
+        display: flex; align-items: center; gap: 8px; font-weight: 400;
+    }
+    .plano-lista li i { color: var(--marrom-claro); font-size: 0.72rem; }
+    .plano-destaque .plano-lista li { color: rgba(255,255,255,0.8); }
+    .plano-destaque .plano-lista li i { color: var(--verde-wa); }
+
+    .plano-btn {
+        display: flex; align-items: center; justify-content: center; gap: 8px;
+        padding: 13px 20px; border-radius: 50px;
+        text-decoration: none; font-size: 0.88rem; font-weight: 700;
+        transition: all 0.3s; width: 100%;
+    }
+    .plano-btn.verde { background: var(--verde-wa); color: #fff; }
+    .plano-btn.verde:hover { background: var(--verde-wa-escuro); }
+    .plano-btn.marrom { background: var(--marrom); color: #fff; }
+    .plano-btn.marrom:hover { background: var(--marrom-escuro); }
+
+    .pagamento-pill {
+        background: var(--branco); color: var(--marrom);
+        padding: 9px 22px; border-radius: 50px;
+        font-size: 0.85rem; font-weight: 600;
+        display: inline-flex; align-items: center; gap: 8px;
+        border: 1.5px solid rgba(107,76,59,0.15);
+    }
+
+    /* CONTATO */
+    .contato-item { display: flex; align-items: flex-start; gap: 1rem; }
+    .contato-item strong {
+        display: block; color: var(--marrom-escuro);
+        font-size: 0.88rem; margin-bottom: 3px; font-weight: 700;
+    }
+    .contato-item p { font-size: 0.88rem; color: var(--texto-medio); font-weight: 400; }
+    .contato-icon {
+        width: 44px; height: 44px; border-radius: 12px;
+        background: rgba(107,76,59,0.08); color: var(--marrom);
+        display: flex; align-items: center; justify-content: center;
+        font-size: 1rem; flex-shrink: 0;
+    }
+
+    .btn-wa {
+        background: var(--verde-wa); color: #fff;
+        padding: 15px 32px; border-radius: 50px;
+        text-decoration: none; font-size: 0.95rem; font-weight: 700;
+        display: flex; align-items: center; gap: 10px;
+        transition: all 0.3s; box-shadow: 0 4px 20px rgba(76,175,125,0.3);
+    }
+    .btn-wa:hover { background: var(--verde-wa-escuro); transform: translateY(-2px); }
+
+    /* RESPONSIVE PLANOS */
+    @media (max-width: 900px) {
+        .planos-grid { grid-template-columns: 1fr; max-width: 420px; }
+    }
+    @media (max-width: 768px) {
+        #contato > div { grid-template-columns: 1fr !important; gap: 2rem !important; }
+    }
+</style>
+
+<script>
+    // MENU
+    function toggleMenu() {
+        document.getElementById('mobileMenu').classList.toggle('open');
+    }
+    document.addEventListener('click', function(e) {
+        const menu = document.getElementById('mobileMenu');
+        const hamburger = document.querySelector('.hamburger');
+        if (menu && hamburger && !menu.contains(e.target) && !hamburger.contains(e.target)) {
+            menu.classList.remove('open');
+        }
+    });
+
+    // TABS PLANOS
+    function switchTab(tab) {
+        document.getElementById('tab-2x').style.display = tab === '2x' ? 'block' : 'none';
+        document.getElementById('tab-1x').style.display = tab === '1x' ? 'block' : 'none';
+        document.getElementById('btn-2x').classList.toggle('active', tab === '2x');
+        document.getElementById('btn-1x').classList.toggle('active', tab === '1x');
+    }
+
+    // CARROSSEL GALERIA — automático
+    (function() {
+        let current = 0;
+        const total = 5;
+        function update() {
+            const track = document.getElementById('galeriaTrack');
+            if (track) track.style.transform = `translateX(-${current * 100}%)`;
+            const dots = document.querySelectorAll('#galeriaDots .dot');
+            dots.forEach((d, i) => d.classList.toggle('active', i === current));
+        }
+        setInterval(() => {
+            current = (current + 1) % total;
+            update();
+        }, 3500);
+    })();
+
+    // CARROSSEL DEPOIMENTOS — automático
+    (function() {
+        let current = 0;
+        const total = 5;
+        function update() {
+            const track = document.getElementById('depTrack');
+            if (track) track.style.transform = `translateX(-${current * 100}%)`;
+            const dots = document.querySelectorAll('#depDots .dot');
+            dots.forEach((d, i) => d.classList.toggle('active', i === current));
+        }
+        setInterval(() => {
+            current = (current + 1) % total;
+            update();
+        }, 4500);
+    })();
+</script>
+
+</body>
+</html>
