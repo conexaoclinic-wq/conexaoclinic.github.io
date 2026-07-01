@@ -130,13 +130,6 @@ html
         /* HERO IMAGE BELOW */
         .hero-image-below { width: 100%; max-height: 480px; overflow: hidden; line-height: 0; }
         .hero-image-below img { width: 100%; max-height: 480px; object-fit: cover; object-position: center 30%; display: block; }
-        .hero-image-below-placeholder {
-            width: 100%; height: 320px;
-            background: linear-gradient(135deg, var(--bege) 0%, rgba(160,120,96,0.3) 100%);
-            display: flex; align-items: center; justify-content: center;
-            font-family: 'Playfair Display', serif;
-            font-size: 0.95rem; font-style: italic; color: var(--marrom-claro);
-        }
 
         /* SECTIONS */
         section { padding: 70px 5%; }
@@ -248,16 +241,6 @@ html
 
         /* INDICACOES */
         .indicacoes { background: var(--branco); }
-        .banner-placeholder {
-            width: 100%; max-width: 680px; border-radius: 20px;
-            background: linear-gradient(135deg, var(--bege) 0%, rgba(160,120,96,0.3) 100%);
-            display: flex; align-items: center; justify-content: center;
-            font-family: 'Playfair Display', serif;
-            font-size: 0.95rem; font-style: italic; color: var(--marrom-claro);
-            margin: 0 auto 2.5rem;
-            border: 2px dashed rgba(107,76,59,0.2);
-            aspect-ratio: 1 / 1; max-height: 440px;
-        }
         .indicacoes-lista {
             display: grid; grid-template-columns: repeat(3, 1fr);
             gap: 1rem; max-width: 720px; margin: 0 auto;
@@ -302,12 +285,9 @@ html
         .carrossel-galeria-track { display: flex; transition: transform 0.6s ease; }
         .carrossel-galeria-slide {
             min-width: 100%; aspect-ratio: 1 / 1;
-            background: linear-gradient(135deg, var(--bege) 0%, rgba(160,120,96,0.25) 100%);
-            display: flex; align-items: center; justify-content: center;
-            font-family: 'Playfair Display', serif;
-            font-size: 0.9rem; font-style: italic; color: var(--marrom-claro);
+            overflow: hidden;
         }
-        .carrossel-galeria-slide img { width: 100%; height: 100%; object-fit: cover; }
+        .carrossel-galeria-slide img { width: 100%; height: 100%; object-fit: cover; display: block; }
         .carrossel-dots { display: flex; justify-content: center; gap: 8px; margin-top: 1.2rem; }
         .dot {
             width: 8px; height: 8px; border-radius: 50%;
@@ -323,17 +303,8 @@ html
             overflow: hidden; border-radius: 20px; position: relative;
         }
         .dep-track { display: flex; transition: transform 0.6s ease; }
-        .dep-slide { min-width: 100%; aspect-ratio: 1 / 1; }
-        .dep-img-placeholder {
-            width: 100%; height: 100%;
-            background: linear-gradient(135deg, var(--bege) 0%, rgba(160,120,96,0.2) 100%);
-            border-radius: 20px;
-            display: flex; align-items: center; justify-content: center;
-            font-family: 'Playfair Display', serif;
-            font-size: 0.95rem; font-style: italic; color: var(--marrom-claro);
-            border: 2px dashed rgba(107,76,59,0.15);
-        }
-        .dep-img-placeholder img { width: 100%; height: 100%; object-fit: cover; border-radius: 20px; }
+        .dep-slide { min-width: 100%; aspect-ratio: 1 / 1; overflow: hidden; }
+        .dep-slide img { width: 100%; height: 100%; object-fit: cover; border-radius: 20px; display: block; }
         .dep-dots { display: flex; justify-content: center; gap: 8px; margin-top: 1.2rem; }
         .dep-google-link {
             display: inline-flex; align-items: center; gap: 8px; margin-top: 2rem;
@@ -441,6 +412,11 @@ html
         }
 
         /* CONTATO */
+        .contato-grid {
+            display: grid; grid-template-columns: 1fr 1fr;
+            gap: 4rem; align-items: start;
+            max-width: 1100px; margin: 0 auto;
+        }
         .contato-item { display: flex; align-items: flex-start; gap: 1rem; }
         .contato-item strong { display: block; color: var(--marrom-escuro); font-size: 0.88rem; margin-bottom: 3px; font-weight: 700; }
         .contato-item p { font-size: 0.88rem; color: var(--texto-medio); }
@@ -471,68 +447,51 @@ html
         }
         .wa-float:hover { transform: scale(1.1); }
 
-        /* ===== RESPONSIVE MOBILE ===== */
+        /* RESPONSIVE */
         @media (max-width: 900px) {
             .planos-grid { grid-template-columns: 1fr; max-width: 440px; margin: 0 auto; }
         }
-
         @media (max-width: 768px) {
             nav { padding: 0 4%; height: 64px; }
             .nav-links, .nav-cta { display: none; }
             .hamburger { display: flex; }
             .mobile-menu { top: 64px; }
-
             section { padding: 56px 5%; }
-
             .beneficios-grid { grid-template-columns: 1fr; max-width: 100%; }
             .beneficio-card { flex-direction: row; text-align: left; align-items: flex-start; }
             .beneficio-card .beneficio-icon { flex-shrink: 0; }
-
             .timeline { grid-template-columns: 1fr; }
             .timeline::before { display: none; }
             .timeline-item { flex-direction: row; text-align: left; align-items: flex-start; }
             .timeline-item .pilar-icon { flex-shrink: 0; }
             .timeline-item .pilar-bolinha { flex-shrink: 0; }
-
             .indicacoes-lista { grid-template-columns: repeat(2, 1fr); }
-
-            .carrossel-galeria-wrapper,
-            .dep-carrossel-wrapper { max-width: 100%; }
-
-            #contato > div { grid-template-columns: 1fr !important; gap: 2.5rem !important; }
-
+            .carrossel-galeria-wrapper, .dep-carrossel-wrapper { max-width: 100%; }
+            .contato-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+            .contato-grid > div:last-child div { height: 280px !important; }
             .checkpoints { gap: 0.5rem; }
             .checkpoint { font-size: 0.76rem; padding: 8px 14px; }
-
             .hero { padding: 90px 6% 60px; }
             .hero h1 { font-size: clamp(1.8rem, 7vw, 2.6rem); }
             .hero-sub-cta { padding: 14px 24px; font-size: 0.95rem; }
             .hero-tag { font-size: 0.68rem; padding: 6px 14px; }
-
             .beneficios-objecao { padding: 16px 20px; }
             .section-title { font-size: clamp(1.6rem, 5vw, 2.2rem); }
-
-            .hero-image-below-placeholder { height: 220px; }
         }
-
         @media (max-width: 480px) {
             nav { padding: 0 4%; }
             .nav-logo img { height: 40px; }
-
             .indicacoes-lista { grid-template-columns: 1fr 1fr; }
             .beneficio-card { flex-direction: column; align-items: center; text-align: center; }
             .timeline-item { flex-direction: column; align-items: center; text-align: center; }
-
             .hero h1 { font-size: 1.75rem; }
-
             .tab-plano { padding: 10px 20px; font-size: 0.78rem; }
-
             .btn-wa { font-size: 0.85rem; padding: 13px 22px; }
             .wa-float { width: 50px; height: 50px; font-size: 1.4rem; bottom: 16px; right: 16px; }
-
             .plano-card { padding: 1.6rem 1.4rem; }
             .plano-valor { font-size: 2.2rem; }
             .plano-valor.secundario { font-size: 1.9rem; }
+            .contato-grid > div:last-child div { height: 240px !important; }
         }
     </style>
 </head>
@@ -584,11 +543,8 @@ html
 
 <!-- IMAGEM ABAIXO DO HERO -->
 <div class="hero-image-below">
-    <div class="hero-image-below-placeholder">
-        Imagem do studio — substituir pela foto real (1920 × 520px)
-    </div>
-</div>
-
+    <img src="hero-image-below.jpg" alt="Conexão Clinic Studio de Pilates">
+html
 <!-- BENEFICIOS -->
 <section class="beneficios section-center" id="beneficios">
     <span class="section-tag">Por que Pilates?</span>
@@ -690,9 +646,7 @@ html
     <span class="section-tag">Para quem é?</span>
     <h2 class="section-title">O Pilates é para <em>você</em></h2>
     <p class="section-sub">Independente da sua condição ou objetivo, temos uma abordagem pensada para o seu momento.</p>
-    <div class="banner-placeholder">
-        Montagem de fotos — substituir pela imagem real (formato quadrado)
-    </div>
+    <img src="indicacoes.jpg" alt="Indicações Conexão Clinic" style="width:100%; max-width:680px; border-radius:20px; display:block; margin:0 auto 2.5rem; object-fit:cover;">
     <div class="indicacoes-lista">
         <div class="indicacao-item"><h4>Gestantes</h4><p>Movimento seguro em cada fase</p></div>
         <div class="indicacao-item"><h4>Dores Crônicas</h4><p>Coluna, joelho, quadril e mais</p></div>
@@ -717,16 +671,19 @@ html
     </div>
     <div class="carrossel-galeria-wrapper">
         <div class="carrossel-galeria-track" id="galeriaTrack">
-            <div class="carrossel-galeria-slide">Foto 1 — substituir pela imagem real</div>
-            <div class="carrossel-galeria-slide">Foto 2 — substituir pela imagem real</div>
-            <div class="carrossel-galeria-slide">Foto 3 — substituir pela imagem real</div>
-            <div class="carrossel-galeria-slide">Foto 4 — substituir pela imagem real</div>
-            <div class="carrossel-galeria-slide">Foto 5 — substituir pela imagem real</div>
+            <div class="carrossel-galeria-slide"><img src="galeria-1.jpg" alt="Espaço Conexão Clinic"></div>
+            <div class="carrossel-galeria-slide"><img src="galeria-2.jpg" alt="Espaço Conexão Clinic"></div>
+            <div class="carrossel-galeria-slide"><img src="galeria-3.jpg" alt="Espaço Conexão Clinic"></div>
+            <div class="carrossel-galeria-slide"><img src="galeria-4.jpg" alt="Espaço Conexão Clinic"></div>
+            <div class="carrossel-galeria-slide"><img src="galeria-5.jpg" alt="Espaço Conexão Clinic"></div>
         </div>
     </div>
     <div class="carrossel-dots" id="galeriaDots">
-        <button class="dot active"></button><button class="dot"></button>
-        <button class="dot"></button><button class="dot"></button><button class="dot"></button>
+        <button class="dot active"></button>
+        <button class="dot"></button>
+        <button class="dot"></button>
+        <button class="dot"></button>
+        <button class="dot"></button>
     </div>
 </section>
 
@@ -737,23 +694,25 @@ html
     <p class="section-sub">Resultados reais de quem escolheu a Conexão Clinic para cuidar do seu corpo.</p>
     <div class="dep-carrossel-wrapper">
         <div class="dep-track" id="depTrack">
-            <div class="dep-slide"><div class="dep-img-placeholder">Print do Google — substituir pela imagem real</div></div>
-            <div class="dep-slide"><div class="dep-img-placeholder">Print do Google — substituir pela imagem real</div></div>
-            <div class="dep-slide"><div class="dep-img-placeholder">Print do Google — substituir pela imagem real</div></div>
-            <div class="dep-slide"><div class="dep-img-placeholder">Print do Google — substituir pela imagem real</div></div>
-            <div class="dep-slide"><div class="dep-img-placeholder">Print do Google — substituir pela imagem real</div></div>
+            <div class="dep-slide"><img src="depoimento-1.jpg" alt="Depoimento Conexão Clinic"></div>
+            <div class="dep-slide"><img src="depoimento-2.jpg" alt="Depoimento Conexão Clinic"></div>
+            <div class="dep-slide"><img src="depoimento-3.jpg" alt="Depoimento Conexão Clinic"></div>
+            <div class="dep-slide"><img src="depoimento-4.jpg" alt="Depoimento Conexão Clinic"></div>
+            <div class="dep-slide"><img src="depoimento-5.jpg" alt="Depoimento Conexão Clinic"></div>
         </div>
     </div>
     <div class="dep-dots" id="depDots">
-        <button class="dot active"></button><button class="dot"></button>
-        <button class="dot"></button><button class="dot"></button><button class="dot"></button>
+        <button class="dot active"></button>
+        <button class="dot"></button>
+        <button class="dot"></button>
+        <button class="dot"></button>
+        <button class="dot"></button>
     </div>
     <br>
     <a href="https://www.google.com/maps/place/Conexão+Clinic+Studio+de+Pilates+São+Paulo" target="_blank" class="dep-google-link">
         <i class="fab fa-google"></i> Ver todos os depoimentos no Google
     </a>
 </section>
-html
 <!-- PLANOS -->
 <section style="background: var(--bege-claro); padding: 70px 5%;" id="planos" class="section-center">
     <span class="section-tag">Investimento</span>
@@ -980,25 +939,8 @@ html
     <i class="fab fa-whatsapp"></i>
 </a>
 
-<style>
-    .contato-grid {
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        gap: 4rem; align-items: start;
-        max-width: 1100px; margin: 0 auto;
-    }
-    @media (max-width: 768px) {
-        .contato-grid { grid-template-columns: 1fr; gap: 2.5rem; }
-        .contato-grid > div:last-child div { height: 280px !important; }
-    }
-    @media (max-width: 480px) {
-        .contato-grid > div:last-child div { height: 240px !important; }
-        footer { padding: 40px 5%; }
-        footer > div:nth-child(3) { gap: 1rem !important; }
-    }
-</style>
-
 <script>
+    // MENU MOBILE
     function toggleMenu() {
         document.getElementById('mobileMenu').classList.toggle('open');
     }
@@ -1010,6 +952,7 @@ html
         }
     });
 
+    // TABS PLANOS
     function switchTab(tab) {
         document.getElementById('tab-2x').style.display = tab === '2x' ? 'block' : 'none';
         document.getElementById('tab-1x').style.display = tab === '1x' ? 'block' : 'none';
@@ -1017,6 +960,7 @@ html
         document.getElementById('btn-1x').classList.toggle('active', tab === '1x');
     }
 
+    // CARROSSEL GALERIA
     (function() {
         let current = 0;
         const total = 5;
@@ -1027,18 +971,24 @@ html
             dots.forEach((d, i) => d.classList.toggle('active', i === current));
         }
         setInterval(() => { current = (current + 1) % total; update(); }, 3500);
-
         const wrapper = document.querySelector('.carrossel-galeria-wrapper');
         if (wrapper) {
             let startX = 0;
             wrapper.addEventListener('touchstart', e => { startX = e.touches[0].clientX; }, { passive: true });
             wrapper.addEventListener('touchend', e => {
                 const diff = startX - e.changedTouches[0].clientX;
-                if (Math.abs(diff) > 40) { current = diff > 0 ? (current + 1) % total : (current - 1 + total) % total; update(); }
+                if (Math.abs(diff) > 40) {
+                    current = diff > 0 ? (current + 1) % total : (current - 1 + total) % total;
+                    update();
+                }
             }, { passive: true });
         }
+        document.querySelectorAll('#galeriaDots .dot').forEach((dot, i) => {
+            dot.addEventListener('click', () => { current = i; update(); });
+        });
     })();
 
+    // CARROSSEL DEPOIMENTOS
     (function() {
         let current = 0;
         const total = 5;
@@ -1049,18 +999,24 @@ html
             dots.forEach((d, i) => d.classList.toggle('active', i === current));
         }
         setInterval(() => { current = (current + 1) % total; update(); }, 4500);
-
         const wrapper = document.querySelector('.dep-carrossel-wrapper');
         if (wrapper) {
             let startX = 0;
             wrapper.addEventListener('touchstart', e => { startX = e.touches[0].clientX; }, { passive: true });
             wrapper.addEventListener('touchend', e => {
                 const diff = startX - e.changedTouches[0].clientX;
-                if (Math.abs(diff) > 40) { current = diff > 0 ? (current + 1) % total : (current - 1 + total) % total; update(); }
+                if (Math.abs(diff) > 40) {
+                    current = diff > 0 ? (current + 1) % total : (current - 1 + total) % total;
+                    update();
+                }
             }, { passive: true });
         }
+        document.querySelectorAll('#depDots .dot').forEach((dot, i) => {
+            dot.addEventListener('click', () => { current = i; update(); });
+        });
     })();
 </script>
 
 </body>
 </html>
+</div>
